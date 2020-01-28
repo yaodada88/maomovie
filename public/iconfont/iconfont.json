@@ -1,0 +1,44 @@
+{
+  "id": "1600254",
+  "name": "猫眼",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "632337",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "2577146",
+      "name": "我 的",
+      "font_class": "wode",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "3029871",
+      "name": "影院",
+      "font_class": "yingyuan",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    },
+    {
+      "icon_id": "4543883",
+      "name": "猫眼",
+      "font_class": "maoyan",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "9975752",
+      "name": "电影",
+      "font_class": "dianying1",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    }
+  ]
+}
