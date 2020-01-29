@@ -39,6 +39,13 @@
       "font_class": "dianying1",
       "unicode": "e607",
       "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "12294926",
+      "name": "左箭头",
+      "font_class": "zuojiantou",
+      "unicode": "e601",
+      "unicode_decimal": 58881
     }
   ]
 }
