@@ -1,7 +1,8 @@
 html,body,div,h1,h2,h3,h4,h5,p,img,a,span,ul,li,header,footer,section,aside,nav,form,input,select,textarea,
 table,tr,td,caption{margin:0;padding:0;}
 ul{list-style:none;}
-	a{text-decoration:none;outline:none;border:0;}
-
+a{text-decoration:none;outline:none;border:0;}
+body{
+	font-family: PingFangSC-Regular,Hiragino Sans GB,sans-serif;
 }
 	/*页面测量的css尺寸/2/100=Xrem*/

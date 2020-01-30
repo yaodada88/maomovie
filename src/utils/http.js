@@ -10,7 +10,7 @@ http.interceptors.request.use((config)=>{
     if(config.method == "post"){
         config.data=config.data
     }else if(config.method == "get"){
-        config.params = {...config.data}
+        config.data?config.params = {...config.data}:config.params={...config.params}
     }
 
     return config;

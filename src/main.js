@@ -6,7 +6,10 @@ import Header from '@/common/header'
 
 Vue.config.productionTip = false
 Vue.component("Header",Header)
-
+Vue.filter("toPath",(val,params)=>{
+  var reg = /w\.h/;
+  return val.replace(reg,params);
+})
 new Vue({
   router,
   store,

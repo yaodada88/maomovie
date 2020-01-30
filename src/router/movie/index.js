@@ -1,5 +1,21 @@
 export default {
     path:"/movie",
     component:()=>import("@/views/movie"),
-    name:"movie"
+    name:"movie",
+    children:[
+        {
+            path:"being",
+            component:()=>import("@/components/beingMovie"),
+            name:"being"
+        },
+        {
+            path:"soon",
+            component:()=>import("@/components/soonMovie"),
+            name:"soon"
+        },
+        {
+            path:"/movie",
+            redirect:"being"
+        }
+    ]
 }

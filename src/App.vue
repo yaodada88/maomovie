@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
+
     <Tabbar />
   </div>
 </template>
@@ -12,5 +15,8 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style>
+#app,.page{
+  height: 100%;
+}
 </style>

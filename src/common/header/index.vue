@@ -27,6 +27,7 @@ export default {
          top:0;
          left:0;
          color:#fff;
+         z-index: 5;
          p{
              font-size: 0.25rem;
          }
