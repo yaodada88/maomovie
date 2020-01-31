@@ -1,4 +1,5 @@
 <template>
+<BScroll>
   <div class="movieList movieTop">
     <div class="movieItem" v-for="(item,index) in movieList" :key="index">
       <div class="moviePic">
@@ -18,6 +19,7 @@
       </div>
     </div>
   </div>
+  </BScroll>
 </template>
 <script>
 import Vuex from 'vuex'
@@ -33,6 +35,8 @@ export default {
 <style lang="scss">
 .movieList{
   background: #fff;
+  margin-top: .56rem;
+  padding-bottom: 1.8rem;
 }
 .movieItem {
   height: 1.5rem;

@@ -2,16 +2,25 @@ export default {
     path:"/movie",
     component:()=>import("@/views/movie"),
     name:"movie",
+    meta:{
+        tabbarFlag:true
+    },
     children:[
         {
             path:"being",
             component:()=>import("@/components/beingMovie"),
-            name:"being"
+            name:"being",
+            meta:{
+                tabbarFlag:true
+            }
         },
         {
             path:"soon",
             component:()=>import("@/components/soonMovie"),
-            name:"soon"
+            name:"soon",
+            meta:{
+                tabbarFlag:true
+            }
         },
         {
             path:"/movie",

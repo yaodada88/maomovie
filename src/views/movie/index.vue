@@ -54,6 +54,7 @@ $color: #e54847;
     font-size: 0.2rem;
     color: #666;
     background: #fff;
+    z-index: 9;
     .city {
       position: absolute;
       left: 0.2rem;

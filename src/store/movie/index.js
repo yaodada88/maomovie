@@ -11,7 +11,6 @@ export default {
     actions:{
         async getActionsNowMovie({commit},params){
            let data = await getNowMovies(params)
-           console.log(data);
            commit("getMutationsNowMovie",data.movieList)
         }
     },
