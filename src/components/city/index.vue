@@ -2,17 +2,23 @@
   <div class="city">
     <BScroll ref="bscroll">
       <div>
+        <Loading v-if="this.loadingFlag" />
         <div class="hot_city">
           <div class="hot_title">热门城市</div>
           <div class="hot_city_list">
-            <div class="hot_city_item" v-for="(item,index) in hotList" :key="index">{{item}}</div>
+            <div
+              class="hot_city_item"
+              v-for="(item,index) in hotList"
+              :key="index"
+              @tap="handleCityTo({nm:item.nm,id:item.id})"
+            >{{item.nm}}</div>
           </div>
         </div>
         <div class="city_list" ref="city_list">
           <div class="city_list_item" v-for="(item,index) in cityList" :key="index">
             <h2 class="city_item_title">{{item.index}}</h2>
             <div class="city_item_list" v-for="(list,idx) in item.list" :key="idx">
-              <div class="city_item_index">{{list}}</div>
+              <div class="city_item_index" @tap="handleCityTo({nm:list.nm,id:list.id})">{{list.nm}}</div>
             </div>
           </div>
         </div>
@@ -20,7 +26,11 @@
     </BScroll>
     <div class="city_index">
       <ul>
-        <li v-for="(item,index) in cityList" :key="index" @touchstart="handleTo(index)">{{item.index}}</li>
+        <li
+          v-for="(item,index) in cityList"
+          :key="index"
+          @touchstart="handleTo(index)"
+        >{{item.index}}</li>
       </ul>
     </div>
   </div>
@@ -29,8 +39,27 @@
 import Vuex from "vuex";
 export default {
   name: "city",
+  data() {
+    return {
+      loadingFlag: true
+    };
+  },
   created() {
-    this.getCityList();
+    if (
+      !window.sessionStorage.getItem("cityList") &&
+      !window.sessionStorage.getItem("hotList")
+    ) {
+      this.getCityList();
+    } else {
+      this.loadingFlag = false;
+    }
+  },
+  watch: {
+    cityList() {
+      if (this.cityList) {
+        this.loadingFlag = false;
+      }
+    }
   },
   computed: {
     ...Vuex.mapState({
@@ -42,9 +71,14 @@ export default {
     ...Vuex.mapActions({
       getCityList: "city/getActionsCityList"
     }),
-    handleTo(index){
-        let top= this.$refs.city_list.getElementsByTagName("h2")[index].offsetTop;
-        this.$refs.bscroll.handleTo(top);
+    handleTo(index) {
+      let top = this.$refs.city_list.getElementsByTagName("h2")[index]
+        .offsetTop;
+      this.$refs.bscroll.handleTo(top);
+    },
+    handleCityTo(obj) {
+      this.$store.commit("city/handleMutationsCityTo", obj);
+      this.$router.push("/movie");
     }
   }
 };

@@ -3,13 +3,19 @@ import {getCityList} from '@/api/api'
 export default {
     namespaced:true,
     state:{
-        cityList:[],
-        hotList:[]
+        cityList: JSON.parse(window.sessionStorage.getItem("cityList")) || [],
+        hotList: JSON.parse(window.sessionStorage.getItem("hotList")) || [],
+        cityNm:"北京",
+        cityId:1
     },
     mutations:{
-        getMutationsCityList(data,params){
-            data.cityList=params.cityList
-            data.hotList=params.hotList
+        getMutationsCityList(state,params){
+            state.cityList=params.cityList
+            state.hotList=params.hotList
+        },
+        handleMutationsCityTo(state,params){
+            state.cityNm=params.nm;
+            state.cityId=params.id;
         }
     },
     actions:{
@@ -20,7 +26,7 @@ export default {
             //热门城市
             var hotCts=data.cts.slice(0,10);
             for(var i=0;i<hotCts.length;i++){
-                hot_list.push(hotCts[i].nm);
+                hot_list.push({nm:hotCts[i].nm,id:hotCts[i].id});
             }
             //城市列表
             for(var i=0;i<data.cts.length;i++){
@@ -28,12 +34,12 @@ export default {
                 if(toIndex(firstLetter)){
                     for(var j=0;j<city_list.length;j++){
                         if(city_list[j].index==firstLetter){
-                            city_list[j].list.push(data.cts[i].nm);
+                            city_list[j].list.push({nm:data.cts[i].nm,id:data.cts[i].id});
                             break;
                         }
                     }
                 }else{
-                    city_list.push({index:firstLetter,list:[data.cts[i].nm]});
+                    city_list.push({index:firstLetter,list:[{nm:data.cts[i].nm,id:data.cts[i].id}]});
                 }
             }
 
@@ -55,6 +61,8 @@ export default {
                     return -1
                 }
             })
+            window.sessionStorage.setItem("cityList",JSON.stringify(city_list));
+            window.sessionStorage.setItem("hotList",JSON.stringify(hot_list));
             commit("getMutationsCityList",{cityList:city_list,hotList:hot_list});
         }
     }

@@ -1,6 +1,7 @@
 <template>
-<BScroll>
+<BScroll ref="movieWrapper">
   <div class="movieList movieTop">
+    <Loading  v-if="this.loadingFlag"/>
     <div class="movieItem" v-for="(item,index) in movieList" :key="index">
       <div class="moviePic">
         <img :src="item.img | toPath('128.180')" />
@@ -10,7 +11,7 @@
           <h2>{{item.nm}}</h2>
           <p>
             观众评:
-            <span>{{item.sc}}</span>
+            <span class="movieSc">{{item.sc}}</span>
           </p>
           <p class="star">主演: <span>{{item.star}}</span></p>
           <p>{{item.showInfo}}</p>
@@ -25,11 +26,32 @@
 import Vuex from 'vuex'
 export default {
   name: "being",
+  data() {
+    return {
+      loadingFlag:true
+    }
+  },
+  created(){
+   
+  },
   computed:{
     ...Vuex.mapState({
       movieList:state=>state.movie.nowMovieList
     })
-  }
+  },
+  watch: {
+    movieList(){
+      this.$refs.movieWrapper.update();
+    }
+  },
+  mounted(){
+    this.$refs.movieWrapper.getMovieMore();
+   
+  },
+  updated() {
+     this.$refs.movieWrapper.getih();
+      this.loadingFlag=false;
+  },
 };
 </script>
 <style lang="scss">
@@ -79,6 +101,11 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+      }
+      .movieSc{
+        font-weight: 700;
+        color: #faaf00;
+        font-size: .19rem;
       }
     }
     .movieBtn{

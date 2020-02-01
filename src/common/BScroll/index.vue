@@ -8,12 +8,24 @@ import BScroll from 'better-scroll'
 export default {
     mounted(){
         this.scroll=new BScroll(this.$refs.wrapper,{
-            tap:true
+            tap:true,
+            pullUpLoad:true
         })
     },
     methods:{
         handleTo(t){
             this.scroll.scrollTo(0,-t);
+        },
+        getMovieMore(){
+            this.scroll.on("pullingUp",()=>{
+                this.$store.dispatch("movie/getActionsMovieMore")
+            })
+        },
+        update(){
+            this.scroll.finishPullUp();
+        },
+        getih(){
+            this.scroll.refresh();
         }
     }
 }

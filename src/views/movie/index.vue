@@ -3,7 +3,7 @@
     <Header />
     <div class="container">
       <div class="nav">
-        <router-link tag="div" class="city" to="/city">北京</router-link>
+        <router-link tag="div" class="city" to="/city">{{this.$store.state.city.cityNm}}</router-link>
         <div class="movieToggle">
           <router-link tag="div" to="being">正在热映</router-link>
           <router-link tag="div" to="soon">即将上映</router-link>
@@ -23,11 +23,15 @@ import Vuex from "vuex";
 export default {
   name: "movie",
   created() {
-    this.getNowMovies();
+    if (!window.sessionStorage.getItem("movieList")) {
+      this.getNowMovies();
+    }
+    this.getMovieMore();
   },
   methods: {
     ...Vuex.mapActions({
-      getNowMovies: "movie/getActionsNowMovie"
+      getNowMovies: "movie/getActionsNowMovie",
+      getMovieMore: "movie/getActionsMovieMore"
     })
   }
 };
@@ -48,8 +52,8 @@ $color: #e54847;
     align-items: center;
     height: 0.56rem;
     position: fixed;
-    left:0;
-    top: .64rem;
+    left: 0;
+    top: 0.64rem;
     width: 100%;
     font-size: 0.2rem;
     color: #666;
@@ -85,7 +89,7 @@ $color: #e54847;
     }
   }
 }
-.movieTop{
-  padding-top: .56rem;
+.movieTop {
+  padding-top: 0.56rem;
 }
 </style>
