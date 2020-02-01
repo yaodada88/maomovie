@@ -5,7 +5,7 @@ export default {
     state:{
         cityList: JSON.parse(window.sessionStorage.getItem("cityList")) || [],
         hotList: JSON.parse(window.sessionStorage.getItem("hotList")) || [],
-        cityNm:"北京",
+        cityNm:window.sessionStorage.getItem("cityNm") || "北京",
         cityId:1
     },
     mutations:{
@@ -16,6 +16,8 @@ export default {
         handleMutationsCityTo(state,params){
             state.cityNm=params.nm;
             state.cityId=params.id;
+            window.sessionStorage.setItem("cityNm",params.nm);
+            window.sessionStorage.setItem("cityId",params.id)
         }
     },
     actions:{

@@ -20,7 +20,7 @@
             <div class="city_item_list" v-for="(list,idx) in item.list" :key="idx">
               <div class="city_item_index" @tap="handleCityTo({nm:list.nm,id:list.id})">{{list.nm}}</div>
             </div>
-          </div>
+          </div> 
         </div>
       </div>
     </BScroll>
