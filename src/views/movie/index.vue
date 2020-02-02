@@ -44,7 +44,6 @@ $color: #e54847;
   width: 100%;
   padding-top: 0.64rem;
   padding-bottom: 0.6rem;
-  overflow: auto;
   .nav {
     border-bottom: 1px solid #ccc;
     display: flex;

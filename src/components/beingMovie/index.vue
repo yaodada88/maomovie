@@ -16,7 +16,7 @@
           <p class="star">主演: <span>{{item.star}}</span></p>
           <p>{{item.showInfo}}</p>
         </div>
-        <div :class="item.globalReleased?'movieBtn':' '">{{item.globalReleased?"购票":"预售"}}</div>
+        <div :class="item.globalReleased?'movieBtn':'movieBtnTo '">{{item.globalReleased?"购票":"预售"}}</div>
       </div>
     </div>
   </div>
@@ -31,9 +31,7 @@ export default {
       loadingFlag:true
     }
   },
-  created(){
-   
-  },
+
   computed:{
     ...Vuex.mapState({
       movieList:state=>state.movie.nowMovieList
