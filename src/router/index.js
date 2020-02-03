@@ -5,6 +5,7 @@ import Cinema from './cinema'
 import Mine from './mine';
 import City from './city';
 import Search from './search'
+import MovieDetail from './movieDetail'
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,7 @@ const routes = [
   Mine,
   City,
   Search,
+  MovieDetail,
   {
     path:"**",
     redirect:"/movie"

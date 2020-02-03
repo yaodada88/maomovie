@@ -3,7 +3,7 @@
     <div class="soonMovie">
       <p class="soonTitle">近期最受期待</p>
       <div class="soonMovieList">
-        <div class="soonMovieItem" v-for="(item,index) in soonMovie" :key="index">
+        <div class="soonMovieItem" v-for="(item,index) in soonMovie" :key="index" @click="handleToPath({id:item.id,nm:item.nm})" >
           <div class="soonMovieImg">
             <img :src="item.img | toPath('128.180')" />
             <span class="wish-bg"></span>
@@ -33,7 +33,11 @@ export default {
   methods: {
     ...Vuex.mapActions({
       getSoonMovie: "movie/getActionSoonMovie"
-    })
+    }),
+     handleToPath(obj){
+      this.$router.push("/movieDetail");
+      this.$store.dispatch("movie/getActionMovieDetial",obj)
+    }
   }
 };
 </script>

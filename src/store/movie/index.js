@@ -1,8 +1,9 @@
-import {getNowMovies,getMovieMore,getSoonMovie} from '@/api/api'
+import {getNowMovies,getMovieMore,getSoonMovie,getMovieDetail} from '@/api/api'
 export default {
     state:{
         nowMovieList: JSON.parse(window.sessionStorage.getItem("movieList")) || [],
-        soonMovieList:[]
+        soonMovieList:[],
+        detailMovie:JSON.parse(window.sessionStorage.getItem("detailMovie")) || []
     },
     mutations:{
         getMutationsNowMovie(state,params){
@@ -13,6 +14,9 @@ export default {
         },
         getMutationSoonMovie(state,params){
             state.soonMovieList=params;
+        },
+        getMutationMovieDetail(state,params){
+            state.detailMovie=params;
         }
     },
     actions:{
@@ -20,7 +24,6 @@ export default {
            let data = await getNowMovies();
            window.sessionStorage.setItem("MovieList",JSON.stringify(data.movieList))
            commit("getMutationsNowMovie",data.movieList)
-           console.log(data)
         },
         async getActionsMovieMore({commit}){
             let data = await getMovieMore();
@@ -30,6 +33,13 @@ export default {
             let id = window.sessionStorage.getItem("cityId")
             let data = await getSoonMovie(id);
             commit("getMutationSoonMovie",data.coming )
+        },
+        async getActionMovieDetial({commit},params){
+            let id=params.id;
+            let data = await getMovieDetail(id);
+            console.log(data)
+            window.sessionStorage.setItem("detailMovie",JSON.stringify(data.detailMovie))
+            commit("getMutationMovieDetail",data.detailMovie);
         }
     },
     namespaced:true

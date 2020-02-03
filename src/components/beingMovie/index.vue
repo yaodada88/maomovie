@@ -2,7 +2,10 @@
 <BScroll ref="movieWrapper">
   <div class="movieList movieTop">
     <Loading  v-if="this.loadingFlag"/>
-    <div class="movieItem" v-for="(item,index) in movieList" :key="index">
+    <div class="movieItem" 
+    v-for="(item,index) in movieList" 
+    :key="index"
+    @tap="handleToPath({id:item.id,nm:item.nm})">
       <div class="moviePic">
         <img :src="item.img | toPath('128.180')" />
       </div>
@@ -20,7 +23,9 @@
       </div>
     </div>
   </div>
+  
   </BScroll>
+ 
 </template>
 <script>
 import Vuex from 'vuex'
@@ -40,6 +45,12 @@ export default {
   watch: {
     movieList(){
       this.$refs.movieWrapper.update();
+    }
+  },
+  methods:{
+    handleToPath(obj){
+      this.$router.push("/movieDetail");
+      this.$store.dispatch("movie/getActionMovieDetial",obj)
     }
   },
   mounted(){
